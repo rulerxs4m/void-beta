@@ -6,6 +6,4 @@ emojis
 requests
 matplotlib
 scipy
-datetime
-math
 asyncio
