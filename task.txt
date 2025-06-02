@@ -1,0 +1,8 @@
+Priority Task List
+
+1. Auto Dono Roles (customizable)
+2. Giveaway Cog with Logging (customizable)
+3. Event Logging Cog (customizabe and w event manager name)
+4. Rumble Dead Or Alive
+5. Heist Viewlock / Unviewlock (customizable i.e - auto/manual)
+6. Ticket Cog w Transcripts

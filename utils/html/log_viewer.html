@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs - {{ name }}</title>
+    <style>
+        html { height: 100%; }
+        body {
+            background-color: black !important;
+            color: #DDD;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: -webkit-fill-available;
+        }
+        input {
+            border-radius: 100px;
+            padding: 10px 20px;
+            font-size: large;
+            width: -webkit-fill-available;
+            outline: none;
+            border: none;
+            background: #aaf2;
+            color: white;
+        }
+        div { overflow: auto; border-radius: 10px; }
+        ul {
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: max-content;
+        }
+        li {
+            border-radius: 8px;
+            background-color: #aaf2;
+            padding: 10px;
+            white-space: pre;
+            font-size: larger;
+        }
+        ::-webkit-scrollbar { width: 0px; height: 0px; }
+        .ansi1 { font-weight: 900 !important; }
+        .ansi30 { color: #999999 !important; }
+        .ansi31 { color: #FF0000 !important; }
+        .ansi34 { color: #70ACFF !important; }
+        .ansi35 { color: #ED4AFF !important; }
+    </style>
+</head>
+<body>
+    <input type="text" id="filter" placeholder="Search Logs.">
+    <div><ul id="logs"></ul></div>
+</body>
+<script>
+const parser = new DOMParser();
+const doc = parser.parseFromString(`{{ logs | safe}}`, "text/html")
+doc.querySelectorAll("style")
+    .forEach(elem => document.head.appendChild(elem))
+
+doc.body.children[0].innerHTML.split("\n").forEach(line => {
+    const elem = document.getElementById("logs")
+    if (line.trim() !== "") {
+        const li = document.createElement("li")
+        li.innerHTML = line
+        elem.prepend(li)
+    }
+})
+
+document.getElementById("filter").addEventListener("input", event => {
+    const filter = event.target.value.toLowerCase()
+    const logs = document.getElementById("logs").children
+    for (const log of logs) {
+        if (log.innerText.toLowerCase().includes(filter))
+           log.style.display = "block"
+        else log.style.display = "none" 
+    }
+})
+</script>
+</html>

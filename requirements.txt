@@ -1,0 +1,8 @@
+discord.py
+pytz
+flask
+ansi2html
+emojis
+requests
+matplotlib
+scipy
