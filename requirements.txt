@@ -6,7 +6,6 @@ emojis
 requests
 matplotlib
 scipy
-sqlite3
 datetime
 math
 asyncio
